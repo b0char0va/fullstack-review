@@ -5,7 +5,9 @@ class Search extends React.Component {
     super(props);
     this.state = {
       term: ''
-    }
+    };
+    this.search = this.search.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   onChange (e) {
@@ -28,3 +30,5 @@ class Search extends React.Component {
 }
 
 export default Search;
+
+

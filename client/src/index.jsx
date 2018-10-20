@@ -13,9 +13,26 @@ class App extends React.Component {
 
   }
 
+  componentDidMount(){
+      $.ajax({
+          url : "http://localhost:1128/repos",
+          method : "GET",
+          success : (data)=>{
+              this.setState({
+                  repos : data
+              })
+          },
+          error :(err)=> {
+              console.log(err);
+          }
+      })
+  }
+
   search (term) {
     console.log(`${term} was searched`);
     // TODO
+      var searchObj = {term: term};
+      serverMethods.create(searchObj);
   }
 
   render () {
@@ -28,3 +45,21 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
+var serverMethods = {
+
+    create: (obj) => {
+      console.log(obj);
+        $.ajax({
+            url : "http://localhost:1128/repos",
+            method : "POST",
+            data : JSON.stringify(obj),
+            contentType: "application/json",
+            success : (data)=>{console.log(data);},
+            error :(err)=> {
+                console.log(err);
+            }
+        })
+    },
+};
