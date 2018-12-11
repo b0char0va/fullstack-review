@@ -10,7 +10,6 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
-
   }
 
   componentDidMount(){
@@ -30,7 +29,6 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    // TODO
       var searchObj = {term: term};
       serverMethods.create(searchObj);
   }
@@ -46,11 +44,8 @@ class App extends React.Component {
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
-
 var serverMethods = {
-
     create: (obj) => {
-      console.log(obj);
         $.ajax({
             url : "http://localhost:1128/repos",
             method : "POST",
